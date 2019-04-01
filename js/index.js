@@ -2,8 +2,17 @@ $(document).ready(function() {
   $(".random").on("click", function() {
     window.open("https://en.wikipedia.org/wiki/Special:Random")
   })
-  $("#search").on("click", function() {
-    var input = $("#input").val();
+  $("#search").on("click", searchArticles);
+  $("#input").on("keypress", function(e){
+    if (e.which == 13) {
+        searchArticles()
+    }
+  });
+});
+
+
+function searchArticles() {
+  var input = $("#input").val();
     if (input === "") {
       $("#result-title").html("Please enter an input.");
     } else {
@@ -17,5 +26,4 @@ $(document).ready(function() {
         }
       });
     }
-  });
-});
+}
